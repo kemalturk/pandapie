@@ -19,16 +19,22 @@ class PandaPie extends StatelessWidget {
   PandaPie({
     Key key,
     this.size = 300,
-    @required this.selectedKey,
+    this.selectedKey,
     @required this.data,
     this.lowHardwareMode = false,
   }):
-  assert(selectedKey != null),
   assert(data != null),
   super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    bool drawSelectedLayer = false;
+
+    try {
+      final selectedItem = data.firstWhere((element) => element.key == selectedKey);
+      if (selectedItem != null) drawSelectedLayer = true;
+    } catch (e) {}
 
     final clipper = _PieChartClipper(data: data);
 
@@ -74,6 +80,7 @@ class PandaPie extends StatelessWidget {
               )
             ),
           ),
+          drawSelectedLayer ?
           Container(
             width: size,
             height: size,
@@ -87,7 +94,7 @@ class PandaPie extends StatelessWidget {
                 color: Colors.orange
               ),
             ),
-          ),
+          ) : Container(),
           Container(
             width: size * (3/10),
             height: size * (3/10),
@@ -146,7 +153,7 @@ class _PieChartClipper extends CustomClipper<Path> {
   _PieChartClipper({
     @required this.data,
     this.drawSelectedOnly = false,
-    this.selectedKey = '',
+    this.selectedKey,
   });
 
   @override
@@ -157,6 +164,14 @@ class _PieChartClipper extends CustomClipper<Path> {
     final center = Point(size.width / 2, size.height / 2);
 
     final roundedArcRadius = radius - outerPadding;
+
+    final outerPath = Path()
+    ..addOval(
+      Rect.fromCircle(
+        center: Offset(center.x, center.y),
+        radius: radius
+      ),
+    )..close();
 
     FpcUtil.init(
       center: center,
@@ -178,12 +193,7 @@ class _PieChartClipper extends CustomClipper<Path> {
       double value = e.value;
       double radian = (value * 2 * pi / total);
 
-      if(!drawSelectedOnly) {
-        FpcUtil(
-          startRadian: start + innerPadding,
-          sweepRadian: radian - innerPadding,
-        ).drawRoundedArc(innerPath);
-      } else {
+      if(drawSelectedOnly) {
         if(e.key == selectedKey) {
           FpcUtil(
             startRadian: start + innerPadding,
@@ -192,22 +202,17 @@ class _PieChartClipper extends CustomClipper<Path> {
           innerPath.close();
           return FpcUtil.combineWithCenterCircle(innerPath)..close();
         }
+      } else {
+        FpcUtil(
+          startRadian: start + innerPadding,
+          sweepRadian: radian - innerPadding,
+        ).drawRoundedArc(innerPath);
       }
 
       start += radian;
 
     }
 
-    final outerPath = Path();
-
-    outerPath.addOval(
-      Rect.fromCircle(
-        center: Offset(center.x, center.y),
-        radius: radius
-      ),
-    );
-
-    outerPath.close();
     innerPath.close();
 
     final innerCompletePath =

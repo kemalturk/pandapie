@@ -33,10 +33,6 @@ class Home extends StatelessWidget {
               key: '1',
               value: 10,
             ),
-            // PandaPieData(
-            //   key: '2',
-            //   value: 10,
-            // ),
           ],
         ),
       ),
