@@ -1,8 +1,8 @@
 name: pandapie
-description: A new Flutter package project.
-version: 0.0.1
-author:
-homepage:
+description: A fancy pie chart for pandas. Pandapie designed for new neumorphic design trend.
+version: 0.1.0
+author: kemalturk
+homepage: https://github.com/kemalturk/pandapie
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

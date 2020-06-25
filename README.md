@@ -1,14 +1,60 @@
-# pandapie
+![Pub](https://img.shields.io/pub/v/pandapie) 
 
-A new Flutter package project.
+
+# PandaBar
+
+A fancy pie chart for pandas. Pandapie designed for new neumorphic design trend.
+
+| Preview | PageView |
+|---------|----------|
+|![Preview Png](preview.png "Preview") | ![Preview Gif](preview.gif "PageView") |
+
+### PandaPie
+- `size` - size of chart
+- `selectedKey` - selected key
+
+### PandaPieData
+- `id` - the id of this item
+- `value` - the value of this item
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Add the dependency in `pubspec.yaml`:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```yaml
+dependencies:
+  ...
+  pandapie: ^0.1.0
+```
+
+## Basic Usage
+
+```dart
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFF202327),
+      body: Center(
+        child: PandaPie(
+          selectedKey: '3',
+          data: [
+            PandaPieData(
+              key: '1',
+              value: 50,
+            ),
+            PandaPieData(
+              key: '2',
+              value: 50,
+            ),
+            PandaPieData(
+              key: '3',
+              value: 30,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```

@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -24,14 +25,22 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade900,
+      backgroundColor: Color(0xFF202327),
       body: Center(
         child: PandaPie(
-          selectedKey: '1',
+          selectedKey: '3',
           data: [
             PandaPieData(
               key: '1',
-              value: 10,
+              value: 50,
+            ),
+            PandaPieData(
+              key: '2',
+              value: 50,
+            ),
+            PandaPieData(
+              key: '3',
+              value: 30,
             ),
           ],
         ),

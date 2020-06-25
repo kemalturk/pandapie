@@ -191,21 +191,32 @@ class _PieChartClipper extends CustomClipper<Path> {
     for(var e in data) {
 
       double value = e.value;
+
+      double valuePercent = (100 * value) / total;
+
+      // print(valuePercent);
+
       double radian = (value * 2 * pi / total);
+      double startRadian = start + innerPadding;
+      double sweepRadian = radian - innerPadding;
+
+      // print('startRadian: $startRadian');
+      // print('sweepRadian: $sweepRadian');
+      // print('diff: ${sweepRadian - startRadian}');
 
       if(drawSelectedOnly) {
         if(e.key == selectedKey) {
           FpcUtil(
-            startRadian: start + innerPadding,
-            sweepRadian: radian - innerPadding,
+            startRadian: startRadian,
+            sweepRadian: sweepRadian,
           ).drawRoundedArc(innerPath);
           innerPath.close();
           return FpcUtil.combineWithCenterCircle(innerPath)..close();
         }
       } else {
         FpcUtil(
-          startRadian: start + innerPadding,
-          sweepRadian: radian - innerPadding,
+          startRadian: startRadian,
+          sweepRadian: sweepRadian,
         ).drawRoundedArc(innerPath);
       }
 

@@ -89,9 +89,6 @@ class FpcUtil {
     );
 
     final cornerBPoint = cornerB.point;
-    // final cornerBPoint1 = cornerB.move(
-    //   radian: -horizontalBorderRadiusValue
-    // ).point;
     final cornerBPoint2 = cornerB.move(
       radius: -verticalBorderRadiusValue
     ).point;
@@ -124,12 +121,6 @@ class FpcUtil {
       radius: verticalBorderRadiusValue
     ).point;
 
-    // path.arcToPoint(
-    //   Offset(cornerDPoint1.x, cornerDPoint1.y),
-    //   radius: Radius.circular((radius-width)),
-    //   clockwise: false
-    // );
-
     path.lineTo(cornerDPoint1.x, cornerDPoint1.y);
 
     path.quadraticBezierTo(
@@ -161,7 +152,6 @@ class FpcUtil {
       centerCirclePath,
     );
   }
-
 
 }
 
