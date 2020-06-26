@@ -1,7 +1,7 @@
 ![Pub](https://img.shields.io/pub/v/pandapie) 
 
 
-# PandaBar
+# PandaPie
 
 A fancy pie chart for pandas. Pandapie designed for new neumorphic design trend.
 
@@ -24,7 +24,7 @@ Add the dependency in `pubspec.yaml`:
 ```yaml
 dependencies:
   ...
-  pandapie: ^0.1.0
+  pandapie: ^0.1.1
 ```
 
 ## Basic Usage
