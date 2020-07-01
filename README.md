@@ -24,7 +24,7 @@ Add the dependency in `pubspec.yaml`:
 ```yaml
 dependencies:
   ...
-  pandapie: ^0.1.1
+  pandapie: ^0.1.2
 ```
 
 ## Basic Usage
