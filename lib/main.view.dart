@@ -192,8 +192,7 @@ class _PieChartClipper extends CustomClipper<Path> {
 
       double value = e.value;
 
-      double valuePercent = (100 * value) / total;
-
+      // double valuePercent = (100 * value) / total;
       // print(valuePercent);
 
       double radian = (value * 2 * pi / total);
