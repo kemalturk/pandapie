@@ -21,7 +21,7 @@ class FpcUtil {
     FpcUtil.width = width;
   }
 
-  Point radianPoint({double? radius, required double radian}) {
+  Point<double> radianPoint({double? radius, required double radian}) {
     return Point(
         center.x + (radius ?? FpcUtil.radius) * cos(radian), center.y + (radius ?? FpcUtil.radius) * sin(radian));
   }
@@ -59,31 +59,31 @@ class FpcUtil {
       radian: startRadian,
     );
 
-    final Point<double> cornerAPoint = cornerA.point as Point<double>;
-    final Point<double> cornerAPoint1 = cornerA.move(radius: -verticalBorderRadiusValue).point as Point<double>;
-    final Point<double> cornerAPoint2 = cornerA.move(radian: horizontalBorderRadiusValue).point as Point<double>;
+    final Point<double> cornerAPoint = cornerA.point;
+    final Point<double> cornerAPoint1 = cornerA.move(radius: -verticalBorderRadiusValue).point;
+    final Point<double> cornerAPoint2 = cornerA.move(radian: horizontalBorderRadiusValue).point;
 
     path.moveTo(cornerAPoint2.x, cornerAPoint2.y);
 
     path.arcTo(Rect.fromCircle(center: centerOffset, radius: radius), startRadian + horizontalBorderRadiusValue,
         sweepRadian - (horizontalBorderRadiusValue * 2), false);
 
-    final Point<double> cornerBPoint = cornerB.point as Point<double>;
-    final Point<double> cornerBPoint2 = cornerB.move(radius: -verticalBorderRadiusValue).point as Point<double>;
+    final Point<double> cornerBPoint = cornerB.point;
+    final Point<double> cornerBPoint2 = cornerB.move(radius: -verticalBorderRadiusValue).point;
 
     path.quadraticBezierTo(cornerBPoint.x, cornerBPoint.y, cornerBPoint2.x, cornerBPoint2.y);
 
-    final Point<double> cornerCPoint = cornerC.point as Point<double>;
-    final Point<double> cornerCPoint1 = cornerC.move(radius: verticalBorderRadiusValue).point as Point<double>;
-    final Point<double> cornerCPoint2 = cornerC.move(radian: -horizontalBorderRadiusValue).point as Point<double>;
+    final Point<double> cornerCPoint = cornerC.point;
+    final Point<double> cornerCPoint1 = cornerC.move(radius: verticalBorderRadiusValue).point;
+    final Point<double> cornerCPoint2 = cornerC.move(radian: -horizontalBorderRadiusValue).point;
 
     path.lineTo(cornerCPoint1.x, cornerCPoint1.y);
 
     path.quadraticBezierTo(cornerCPoint.x, cornerCPoint.y, cornerCPoint2.x, cornerCPoint2.y);
 
-    final Point<double> cornerDPoint = cornerD.point as Point<double>;
-    final Point<double> cornerDPoint1 = cornerD.move(radian: horizontalBorderRadiusValue).point as Point<double>;
-    final Point<double> cornerDPoint2 = cornerD.move(radius: verticalBorderRadiusValue).point as Point<double>;
+    final Point<double> cornerDPoint = cornerD.point;
+    final Point<double> cornerDPoint1 = cornerD.move(radian: horizontalBorderRadiusValue).point;
+    final Point<double> cornerDPoint2 = cornerD.move(radius: verticalBorderRadiusValue).point;
 
     path.lineTo(cornerDPoint1.x, cornerDPoint1.y);
 
@@ -107,15 +107,15 @@ class FpcUtil {
 }
 
 class Corner {
-  final Point center;
+  final Point<double> center;
   final double radian;
   final double radius;
 
   Corner({required this.center, required this.radian, required this.radius});
 
-  Point get point => Point(center.x + radius * cos(radian), center.y + radius * sin(radian));
+  Point<double> get point => Point(center.x + radius * cos(radian), center.y + radius * sin(radian));
 
-  Corner move({Point? center, double? radian, double? radius}) {
+  Corner move({Point<double>? center, double? radian, double? radius}) {
     return Corner(
       center: center ?? this.center,
       radius: radius != null ? (this.radius + radius) : this.radius,
